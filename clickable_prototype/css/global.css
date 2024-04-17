@@ -1,13 +1,24 @@
 nav.sidebar {
     width: 220px;
+    position: fixed;
+    height: 100vh;
 }
 
-div.dashboard {
-    min-width: calc(100% - 220px);
+div.main {
+    width: calc(100% - 220px);
+    margin-left: 220px;
+}
+
+div.chart {
+    height: 100px;
 }
 
 img#logo {
     height: 32px;
+}
+
+table {
+    overflow: scroll;
 }
 
 @media only screen and (max-width: 767px) {
@@ -20,15 +31,16 @@ img#logo {
         width: 50px;
     }
 
-    div.dashboard {
-        min-width: calc(100% - 50px);
+    div.main {
+        width: calc(100% - 50px);
+        margin-left: 50px;
     }
-    
+
     span.nav-desc {
         display: none;
     }
 
-    ul.navbar-nav  {
-       align-items: center;
+    ul.navbar-nav {
+        align-items: center;
     }
 }
