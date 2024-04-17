@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="css/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="css/global.css" />
+        <script src="js/bootstrap/bootstrap.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/f5719d8282.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="min-vh-100">
+        <main class="row min-vh-100 g-0">
+            <nav class="navbar bg-primary sidebar align-items-start justify-content-start column">
+                <div class="container-fluid d-flex justify-content-center text-center">
+                    <a class="navbar-brand text-light fs-2" href="#">
+                        <img src="FinTrack_logo_light.svg" alt="Logo" width="35" class="d-inline-block align-middle" />
+                        <span class="align-middle fs-1 fw-bold nav-desc">FinTrack</span>
+                    </a>
+                    <ul class="navbar-nav fw-bold d-flex">
+                        <li class="nav-item">
+                            <a class="nav-link text-light icon-link icon-link-hover" aria-current="page" href="#"><i class="fa-solid fa-list bi"></i> <span class="nav-desc">Dashboard</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light icon-link icon-link-hover" href="#"><i class="fa-solid fa-calendar-days bi"></i> <span class="nav-desc">Monthly Overview</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light icon-link icon-link-hover" href="#"><i class="fa-solid fa-piggy-bank bi"></i> <span class="nav-desc">Accounts</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light icon-link icon-link-hover" href="#"><i class="fa-solid fa-cash-register bi"></i> <span class="nav-desc">Transactions</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light icon-link icon-link-hover" href="#"><i class="fa-solid fa-user bi"></i> <span class="nav-desc">Profile</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="container-fluid d-flex justify-content-center align-self-end">
+                    <ul class="navbar-nav fw-bold d-flex">
+                        <li class="nav-item">
+                            <a class="nav-link text-light icon-link icon-link-hover" href="#"><i class="fa-solid fa-bell bi"></i> <span class="nav-desc">Notifications</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning icon-link icon-link-hover" href="#"><i class="fa-solid fa-right-from-bracket bi"></i> <span class="nav-desc">Log out</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid col-auto m-0 dashboard column">
+                <h3 class="pt-3">DASHBOARD</h3>
+                <div class="container-fluid bg-light p-2 mw-100">
+                    <div class="row mb-3">
+                        <h3 class="fw-bold col-8">April Summary</h3>
+                        <p class="col-3 text-end">Status: <span class="text-success">On Track</span></p>
+                        <p class="col-1">
+                            <a href="#"><i class="fa-solid fa-circle-plus text-primary"></i></a>
+                        </p>
+                    </div>
+                    <div class="container d-flex mb-3">
+                        <div class="col-4 d-flex flex-column align-items-center">
+                            <p class="mb-0"><i class="fa-solid fa-bullseye text-danger"></i> Target Budget</p>
+                            <h3 class="mt-0">20,000.00</h3>
+                        </div>
+                        <div class="col-4 d-flex flex-column align-items-center">
+                            <p class="mb-0"><i class="fa-solid fa-chart-line text-warning"></i> Budget Spent</p>
+                            <h3 class="mt-0">14,499.00</h3>
+                        </div>
+                        <div class="col-4 d-flex flex-column align-items-center">
+                            <p class="mb-0"><i class="fa-solid fa-bullseye text-success"></i> Remaining Budget</p>
+                            <h3 class="mt-0">5,501.00</h3>
+                        </div>
+                    </div>
+                    <div class="container-fluid text-center">
+                        <!-- <span class="text-center text-wrap"><i class="fa-solid fa-lightbulb text-warning text-wrap"></i> Insights: Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, aliquam.</span> -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
