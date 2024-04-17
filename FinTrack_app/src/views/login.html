@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Log In</title>
+        <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="../css/global.css" />
+        <script src="../js/bootstrap/bootstrap.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body class="min-vh-100">
+        <main class="row min-vh-100 g-0">
+            <div class="container col-md-6 bg-primary text-light text-center d-flex flex-column justify-content-center">
+                <div class="logo container mb-3 d-flex justify-content-center">
+                    <img class="w-75" src="../images/FinTrack_logo_light.svg" alt="logo">
+                </div>
+                <div class="container">
+                    <h1>FinTrack: Track your Finances</h1>
+                    <p>Track your expenses, set budgets for your financial goals</p>
+                </div>
+            </div>
+            <div class="container col-md-6 d-flex">
+                <form class="container-fluid d-flex flex-column justify-content-center align-items-center" action="dashboard.html">
+                    <h1 class="my-3 col-8">Login</h1>
+                    <div class="mb-3 col-8">
+                        <label for="email_address" class="form-label">Email address</label>
+                        <input type="email" class="form-control border-3" id="email_address" />
+                    </div>
+                    <div class="mb-3 col-8">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control border-3" id="password" />
+                    </div>
+                    <button type="submit" class="btn btn-primary border-0 col-8 mb-3 py-2">Login</button>
+                    <a href="#" class="col-8 mb-5">Forgot password?</a>
+                    <p>Don't have and account? Sign up <a href="register.html">here</a></p>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

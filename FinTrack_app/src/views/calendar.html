@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calendar</title>
+        <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="../css/global.css" />
+        <script src="../js/bootstrap/bootstrap.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/f5719d8282.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var calendarEl = document.getElementById("calendar");
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: "dayGridMonth",
+                    initialDate: "2024-03-07",
+                    headerToolbar: {
+                        left: "title",
+                        center: "",
+                        right: "prev,next today",
+                    },
+                    //sample data
+                    events: [
+                        {
+                            title: "All Day Event",
+                            start: "2024-03-01",
+                        },
+                        {
+                            title: "Long Event",
+                            start: "2024-03-07",
+                        },
+                        {
+                            groupId: "999",
+                            title: "Repeating Event",
+                            start: "2024-03-09",
+                        },
+                        {
+                            title: "Conference",
+                            start: "2024-03-11",
+                        },
+                        {
+                            title: "Meeting",
+                            start: "2024-03-12",
+                        },
+                        {
+                            title: "Lunch",
+                            start: "2024-03-12",
+                        },
+                        {
+                            title: "Meeting",
+                            start: "2024-03-12",
+                        },
+                        {
+                            title: "Birthday Party",
+                            start: "2024-03-13",
+                        },
+                        {
+                            title: "Click for Google",
+                            url: "",
+                            start: "2024-03-28",
+                        },
+                    ],
+                });
+
+                calendar.render();
+            });
+        </script>
+    </head>
+    <body class="min-vh-100">
+        <main class="row min-vh-100 g-0">
+            <nav class="navbar bg-primary sidebar align-items-start justify-content-start column">
+                <div class="container-fluid d-flex justify-content-center">
+                    <a class="navbar-brand text-light fs-2 m-0" href="#">
+                        <img src="../images/FinTrack_logo_light.svg" alt="Logo" width="35" class="d-inline-block align-middle" />
+                        <span class="align-middle fs-1 fw-bold nav-desc">FinTrack</span>
+                    </a>
+                    <ul class="navbar-nav fw-bold d-flex flex-column">
+                        <div>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" aria-current="page" href="dashboard.html"><i class="fa-solid fa-list bi"></i> <span class="nav-desc">Dashboard</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" href="accounts.html"><i class="fa-solid fa-piggy-bank bi"></i> <span class="nav-desc">Accounts</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" href="calendar.html"><i class="fa-solid fa-calendar-days bi"></i> <span class="nav-desc">Calendar</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" href="#"><i class="fa-solid fa-user bi"></i> <span class="nav-desc">Profile</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-warning icon-link icon-link-hover" href="login.html"><i class="fa-solid fa-right-from-bracket bi"></i> <span class="nav-desc">Log out</span></a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid main column">
+                <h1 class="pt-3 mb-3">CALENDAR</h1>
+                <div class="container-fluid">
+                    <div class="row gy-3 mb-3">
+                        <div class="col-md-5 bg-light p-3 rounded-4 column container me-3 mb-3">
+                            <h2 class="fw-bold col-10">Events</h2>
+                            <table class="table table-light table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Events Today</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>4/20: Pay Electricity Bill</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-light table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Upcoming Events</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col bg-light container rounded-4 mb-3 p-3 bg-dark text-light">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

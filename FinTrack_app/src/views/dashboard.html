@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="../css/global.css" />
+        <script src="../js/bootstrap/bootstrap.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/f5719d8282.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="min-vh-100">
+        <main class="row min-vh-100 g-0">
+            <nav class="navbar bg-primary sidebar align-items-start justify-content-start column">
+                <div class="container-fluid d-flex justify-content-center">
+                    <a class="navbar-brand text-light fs-2 m-0" href="#">
+                        <img src="../images/FinTrack_logo_light.svg" alt="Logo" width="35" class="d-inline-block align-middle" />
+                        <span class="align-middle fs-1 fw-bold nav-desc">FinTrack</span>
+                    </a>
+                    <ul class="navbar-nav fw-bold d-flex flex-column">
+                        <div>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" aria-current="page" href="dashboard.html"><i class="fa-solid fa-list bi"></i> <span class="nav-desc">Dashboard</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" href="accounts.html"><i class="fa-solid fa-piggy-bank bi"></i> <span class="nav-desc">Accounts</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" href="calendar.html"><i class="fa-solid fa-calendar-days bi"></i> <span class="nav-desc">Calendar</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" href="#"><i class="fa-solid fa-user bi"></i> <span class="nav-desc">Profile</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-warning icon-link icon-link-hover" href="login.html"><i class="fa-solid fa-right-from-bracket bi"></i> <span class="nav-desc">Log out</span></a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid main column">
+                <h1 class="pt-3 mb-3 page-title">DASHBOARD</h1>
+                <div class="container-fluid bg-light p-3 mw-100 mb-3 rounded-4">
+                    <div class="row mb-3">
+                        <h2 class="fw-bold col-7">April Summary</h2>
+                        <p class="col-4 text-end">Status: <span class="text-success">On Track</span></p>
+                        <p class="col-1 text-end">
+                            <a href="#"><i class="fa-solid fa-circle-plus text-primary"></i></a>
+                        </p>
+                    </div>
+                    <div class="container row mb-3 text-center">
+                        <div class="col-sm-4 d-flex flex-column align-items-center">
+                            <p class="mb-0"><i class="fa-solid fa-bullseye text-danger"></i> Target Budget</p>
+                            <h3 class="mt-0">20,000.00</h3>
+                        </div>
+                        <div class="col-sm-4 d-flex flex-column align-items-center">
+                            <p class="mb-0"><i class="fa-solid fa-chart-line text-warning"></i> Budget Spent</p>
+                            <h3 class="mt-0">14,499.00</h3>
+                        </div>
+                        <div class="col-sm-4 d-flex flex-column align-items-center">
+                            <p class="mb-0"><i class="fa-solid fa-heart-pulse text-success"></i> Remaining Budget</p>
+                            <h3 class="mt-0">5,501.00</h3>
+                        </div>
+                    </div>
+                    <div class="container-fluid text-center mb-3">
+                        <span class="text-center text-wrap"><i class="fa-solid fa-lightbulb text-warning text-wrap"></i> Insights: Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, aliquam.</span>
+                    </div>
+                </div>
+                <div class="container-fluid mb-3">
+                    <div class="row gy-3 d-flex">
+                        <div class="col-md bg-light p-3 rounded-4 column me-3">
+                            <div class="row">
+                                <h2 class="fw-bold col-10">Accounts</h2>
+                                <p class="col-2 text-end">
+                                    <a href="#"><i class="fa-solid fa-circle-plus text-primary"></i></a>
+                                </p>
+                            </div>
+                            <h6 class="mb-3">Total Amount: 100,000.00</h6>
+                            <table class="table table-light table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Account</th>
+                                        <th scope="col">Current Amount</th>
+                                        <th scope="col">Month Change</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Wallet</td>
+                                        <td>10,000.00</td>
+                                        <td class="text-success">10,000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bank A</td>
+                                        <td>50,000.00</td>
+                                        <td class="text-danger">1,000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bank B</td>
+                                        <td>40,000.00</td>
+                                        <td class="text-danger">4,900.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="column col-md bg-light p-3 rounded-4">
+                            <h2 class="fw-bold">Categories</h2>
+                            <table class="table table-light table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Budget Planned</th>
+                                        <th scope="col">Month Change</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Food</td>
+                                        <td>10,000.00</td>
+                                        <td class="text-danger">10,000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transportation</td>
+                                        <td>5,000.00</td>
+                                        <td class="text-danger">2,000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rent and Utilities</td>
+                                        <td>10,000.00</td>
+                                        <td class="text-danger">4,900.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Entertainment</td>
+                                        <td>10,000.00</td>
+                                        <td class="text-danger">4,900.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salary</td>
+                                        <td>10,000.00</td>
+                                        <td class="text-success">4,900.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Investments</td>
+                                        <td>10,000.00</td>
+                                        <td class="text-danger">4,900.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Healthcare</td>
+                                        <td>10,000.00</td>
+                                        <td class="text-danger">4,900.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Education</td>
+                                        <td>10,000.00</td>
+                                        <td class="text-danger">4,900.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Others</td>
+                                        <td>10,000.00</td>
+                                        <td class="text-danger">4,900.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid bg-light p-3 rounded-4">
+                    <h2 class="fw-bold">Stats</h2>
+                    <form action="" class="mb-3">
+                        <select class="form-select" aria-label="Default select example">
+                            <option value="1">Planned vs Actual</option>
+                            <option value="2">Total Account Value</option>
+                            <option value="3">Average Expense</option>
+                          </select>
+                    </form>
+                    <div class="chart bg-dark"></div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
