@@ -4,6 +4,10 @@ nav.sidebar {
     height: 100vh;
 }
 
+div.logo  {
+    height: 50%;
+}
+
 div.main {
     width: calc(100% - 220px);
     margin-left: 220px;
@@ -22,9 +26,12 @@ table {
 }
 
 @media only screen and (max-width: 767px) {
-    div.logo {
-        display: none;
+    div.logo  {
         height: 0;
+    }
+
+    div.logo img {
+        display: none;
     }
 
     nav.sidebar {
