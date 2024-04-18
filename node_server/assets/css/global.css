@@ -1,0 +1,53 @@
+nav.sidebar {
+    width: 220px;
+    position: fixed;
+    height: 100vh;
+}
+
+div.logo  {
+    height: 50%;
+}
+
+div.main {
+    width: calc(100% - 220px);
+    margin-left: 220px;
+}
+
+div.chart {
+    height: 100px;
+}
+
+img#logo {
+    height: 32px;
+}
+
+table {
+    overflow: scroll;
+}
+
+@media only screen and (max-width: 767px) {
+    div.logo  {
+        height: 0;
+    }
+
+    div.logo img {
+        display: none;
+    }
+
+    nav.sidebar {
+        width: 50px;
+    }
+
+    div.main {
+        width: calc(100% - 50px);
+        margin-left: 50px;
+    }
+
+    span.nav-desc {
+        display: none;
+    }
+
+    ul.navbar-nav {
+        align-items: center;
+    }
+}

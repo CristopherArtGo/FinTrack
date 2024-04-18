@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self'" /> -->
+        <title>Register</title>
+        <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="../css/global.css" />
+        <script src="../js/bootstrap/bootstrap.js"></script>
+    </head>
+    <body class="min-vh-100">
+        <main class="row min-vh-100 g-0">
+            <div class="container col-md-6 bg-primary text-light text-center d-flex flex-column justify-content-center">
+                <div class="logo container h-50 mb-3 d-flex justify-content-center">
+                    <img class="w-75" src="../images/FinTrack_logo_light.svg" alt="logo" />
+                </div>
+                <div class="container">
+                    <h1>FinTrack: Track your Finances</h1>
+                    <p>Track your expenses, set budgets for your financial goals</p>
+                </div>
+            </div>
+            <div class="container col-md-6 d-flex">
+                <form class="container-fluid d-flex flex-column justify-content-center align-items-center" action="/register_user">
+                    <h1 class="my-3 col-8">Register</h1>
+                    <div class="mb-3 col-8">
+                        <label for="first_name" class="form-label">First Name</label>
+                        <input type="text" class="form-control border-3" id="first_name" />
+                    </div>
+                    <div class="mb-3 col-8">
+                        <label for="last_name" class="form-label">Last Name</label>
+                        <input type="text" class="form-control border-3" id="last_name" />
+                    </div>
+                    <div class="mb-3 col-8">
+                        <label for="email_address" class="form-label">Email address</label>
+                        <input type="email" class="form-control border-3" id="email_address" />
+                    </div>
+                    <div class="mb-3 col-8">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control border-3" id="password" />
+                    </div>
+                    <div class="mb-3 col-8">
+                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control border-3" id="confirm_password" />
+                    </div>
+                    <button type="submit" class="btn btn-primary border-0 col-8 mb-5 py-2">Register</button>
+                    <p>Already have and account? Login <a href="/login">here</a></p>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

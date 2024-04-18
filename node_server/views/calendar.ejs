@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+        <title>Calendar</title>
+        <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="../css/global.css" />
+        <script src="../js/bootstrap/bootstrap.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script> -->
+        <script src="../js/calendar.js"></script>
+    </head>
+    <body class="min-vh-100">
+        <main class="row min-vh-100 g-0">
+            <nav class="navbar bg-primary sidebar align-items-start justify-content-start column">
+                <div class="container-fluid d-flex justify-content-center">
+                    <a class="navbar-brand text-light fs-2 m-0" href="/dashboard">
+                        <img src="../images/FinTrack_logo_light.svg" alt="Logo" width="35" class="d-inline-block align-middle" />
+                        <span class="align-middle fs-1 fw-bold nav-desc">FinTrack</span>
+                    </a>
+                    <ul class="navbar-nav fw-bold d-flex flex-column">
+                        <div>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" aria-current="page" href="/dashboard">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-window-sidebar" viewBox="0 0 16 16">
+                                        <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                                        <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v2H1V3a1 1 0 0 1 1-1zM1 13V6h4v8H2a1 1 0 0 1-1-1m5 1V6h9v7a1 1 0 0 1-1 1z" />
+                                    </svg>
+                                    <span class="nav-desc">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" href="/accounts">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" />
+                                    </svg>
+                                    <span class="nav-desc">Accounts</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" href="/calendar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                    </svg>
+                                    <span class="nav-desc">Calendar</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light icon-link icon-link-hover" href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                                    </svg>
+                                    <span class="nav-desc">Profile</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-warning icon-link icon-link-hover" href="/logout">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+                                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
+                                    </svg>
+                                    <span class="nav-desc">Log out</span>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid main column">
+                <h1 class="pt-3 mb-3">CALENDAR</h1>
+                <div class="container-fluid">
+                    <div class="row gy-3 mb-3">
+                        <div class="col-md-5 bg-light p-3 rounded-4 column container me-3 mb-3">
+                            <div class="row">
+                                <h2 class="fw-bold col-10">Events</h2>
+                                <div class="col-2 text-end">
+                                    <a href="#">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus-fill" viewBox="0 0 16 16">
+                                            <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2M8.5 8.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5a.5.5 0 0 1 1 0" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <table class="table table-light table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Events Today</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>4/20: Pay Electricity Bill</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-light table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Upcoming Events</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/21: Pay Electricity Bill</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col bg-light container rounded-4 mb-3 p-3 bg-dark text-light">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
