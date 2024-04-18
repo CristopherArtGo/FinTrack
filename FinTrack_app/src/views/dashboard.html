@@ -3,12 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
         <title>Dashboard</title>
         <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
         <link rel="stylesheet" href="../css/global.css" />
         <script src="../js/bootstrap/bootstrap.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://kit.fontawesome.com/f5719d8282.js" crossorigin="anonymous"></script>
     </head>
     <body class="min-vh-100">
         <main class="row min-vh-100 g-0">
@@ -21,19 +20,47 @@
                     <ul class="navbar-nav fw-bold d-flex flex-column">
                         <div>
                             <li class="nav-item">
-                                <a class="nav-link text-light icon-link icon-link-hover" aria-current="page" href="dashboard.html"><i class="fa-solid fa-list bi"></i> <span class="nav-desc">Dashboard</span></a>
+                                <a class="nav-link text-light icon-link icon-link-hover" aria-current="page" href="dashboard.html">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-window-sidebar" viewBox="0 0 16 16">
+                                        <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                                        <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v2H1V3a1 1 0 0 1 1-1zM1 13V6h4v8H2a1 1 0 0 1-1-1m5 1V6h9v7a1 1 0 0 1-1 1z" />
+                                    </svg>
+                                    <span class="nav-desc">Dashboard</span>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light icon-link icon-link-hover" href="accounts.html"><i class="fa-solid fa-piggy-bank bi"></i> <span class="nav-desc">Accounts</span></a>
+                                <a class="nav-link text-light icon-link icon-link-hover" href="accounts.html">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" />
+                                    </svg>
+                                    <span class="nav-desc">Accounts</span>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light icon-link icon-link-hover" href="calendar.html"><i class="fa-solid fa-calendar-days bi"></i> <span class="nav-desc">Calendar</span></a>
+                                <a class="nav-link text-light icon-link icon-link-hover" href="calendar.html">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                    </svg>
+                                    <span class="nav-desc">Calendar</span>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light icon-link icon-link-hover" href="#"><i class="fa-solid fa-user bi"></i> <span class="nav-desc">Profile</span></a>
+                                <a class="nav-link text-light icon-link icon-link-hover" href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                                    </svg>
+                                    <span class="nav-desc">Profile</span>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-warning icon-link icon-link-hover" href="login.html"><i class="fa-solid fa-right-from-bracket bi"></i> <span class="nav-desc">Log out</span></a>
+                                <a class="nav-link text-warning icon-link icon-link-hover" href="login.html">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+                                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
+                                    </svg>
+                                    <span class="nav-desc">Log out</span>
+                                </a>
                             </li>
                         </div>
                     </ul>
@@ -46,20 +73,45 @@
                         <h2 class="fw-bold col-7">April Summary</h2>
                         <p class="col-4 text-end">Status: <span class="text-success">On Track</span></p>
                         <p class="col-1 text-end">
-                            <a href="#"><i class="fa-solid fa-circle-plus text-primary"></i></a>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
+                                </svg>
+                            </a>
                         </p>
                     </div>
                     <div class="container row mb-3 text-center">
                         <div class="col-sm-4 d-flex flex-column align-items-center">
-                            <p class="mb-0"><i class="fa-solid fa-bullseye text-danger"></i> Target Budget</p>
+                            <p class="mb-0">
+                                <span class="text-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-crosshair2" viewBox="0 0 16 16">
+                                        <path d="M8 0a.5.5 0 0 1 .5.5v.518A7 7 0 0 1 14.982 7.5h.518a.5.5 0 0 1 0 1h-.518A7 7 0 0 1 8.5 14.982v.518a.5.5 0 0 1-1 0v-.518A7 7 0 0 1 1.018 8.5H.5a.5.5 0 0 1 0-1h.518A7 7 0 0 1 7.5 1.018V.5A.5.5 0 0 1 8 0m-.5 2.02A6 6 0 0 0 2.02 7.5h1.005A5 5 0 0 1 7.5 3.025zm1 1.005A5 5 0 0 1 12.975 7.5h1.005A6 6 0 0 0 8.5 2.02zM12.975 8.5A5 5 0 0 1 8.5 12.975v1.005a6 6 0 0 0 5.48-5.48zM7.5 12.975A5 5 0 0 1 3.025 8.5H2.02a6 6 0 0 0 5.48 5.48zM10 8a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
+                                    </svg>
+                                </span>
+                                Target Budget
+                            </p>
                             <h3 class="mt-0">20,000.00</h3>
                         </div>
                         <div class="col-sm-4 d-flex flex-column align-items-center">
-                            <p class="mb-0"><i class="fa-solid fa-chart-line text-warning"></i> Budget Spent</p>
+                            <p class="mb-0">
+                                <span class="text-warning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07" />
+                                    </svg>
+                                </span>
+                                Budget Spent
+                            </p>
                             <h3 class="mt-0">14,499.00</h3>
                         </div>
                         <div class="col-sm-4 d-flex flex-column align-items-center">
-                            <p class="mb-0"><i class="fa-solid fa-heart-pulse text-success"></i> Remaining Budget</p>
+                            <p class="mb-0">
+                                <span class="text-success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                                    </svg>
+                                </span>
+                                Remaining Budget
+                            </p>
                             <h3 class="mt-0">5,501.00</h3>
                         </div>
                     </div>
@@ -73,7 +125,11 @@
                             <div class="row">
                                 <h2 class="fw-bold col-10">Accounts</h2>
                                 <p class="col-2 text-end">
-                                    <a href="#"><i class="fa-solid fa-circle-plus text-primary"></i></a>
+                                    <a href="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
+                                        </svg>
+                                    </a>
                                 </p>
                             </div>
                             <h6 class="mb-3">Total Amount: 100,000.00</h6>
@@ -172,7 +228,7 @@
                             <option value="1">Planned vs Actual</option>
                             <option value="2">Total Account Value</option>
                             <option value="3">Average Expense</option>
-                          </select>
+                        </select>
                     </form>
                     <div class="chart bg-dark"></div>
                 </div>

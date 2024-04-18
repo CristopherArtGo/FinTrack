@@ -1,51 +1,105 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('node:path');
-const ejse = require('ejs-electron')
+const { app, BrowserWindow, Menu } = require("electron");
+const path = require("node:path");
+// const ejse = require('ejs-electron')
+
+// check if Mac
+const isMac = process.platform === "darwin";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
-  app.quit();
+if (require("electron-squirrel-startup")) {
+    app.quit();
 }
 
 const createWindow = () => {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-    },
-  });
+    // Create the browser window.
+    const mainWindow = new BrowserWindow({
+        width: 1000,
+        height: 600,
+        webPreferences: {
+            preload: path.join(__dirname, "preload.js"),
+        },
+    });
 
-  // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, './views/login.html'));
+    // and load the login.html of the app.
+    // mainWindow.loadFile(path.join(__dirname, "./views/login.html"));
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+    // Open the DevTools.
+    // mainWindow.webContents.openDevTools();
+    mainWindow.loadURL("http://localhost:8000/login");
 };
+
+// About window
+function createAboutWindow() {
+    // Create the browser window.
+    const aboutWindow = new BrowserWindow({
+        width: 300,
+        height: 300,
+        webPreferences: {
+            preload: path.join(__dirname, "preload.js"),
+        },
+    });
+
+    // and load the login.html of the app.
+    aboutWindow.loadFile(path.join(__dirname, "./views/about.html"));
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow();
+    createWindow();
 
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
-    }
-  });
+    const mainMenu = Menu.buildFromTemplate(menu);
+    Menu.setApplicationMenu(mainMenu);
+    // On OS X it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    app.on("activate", () => {
+        if (BrowserWindow.getAllWindows().length === 0) {
+            createWindow();
+        }
+    });
 });
+
+// Menu template
+const menu = [
+    ...(isMac
+        ? [
+              {
+                  label: app.name,
+                  submenu: [
+                      {
+                          label: "About",
+                          click: createAboutWindow,
+                      },
+                  ],
+              },
+          ]
+        : []),
+    {
+        role: "fileMenu",
+    },
+    ...(!isMac
+        ? [
+              {
+                  label: "Help",
+                  submenu: [
+                      {
+                          label: "About",
+                          click: createAboutWindow,
+                      },
+                  ],
+              },
+          ]
+        : []),
+];
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
+        app.quit();
+    }
 });
 
 // In this file you can include the rest of your app's specific main process
