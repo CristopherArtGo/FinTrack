@@ -1,4 +1,4 @@
-GET http://localhost:3000/accounts/4/5
+GET http://localhost:3000/all_events/4
 # Content-Type: application/json
 
 # {

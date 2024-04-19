@@ -9,7 +9,6 @@ function dashboard(req, res, next) {
         res.redirect("/login");
     }
     axios.get(`http://localhost:3000/dashboard/${req.session.user.user_id}`).then((response) => {
-        // console.log(response.data);
 
         // get all accounts and their total amount
         let total_account = 0;
@@ -21,7 +20,6 @@ function dashboard(req, res, next) {
         total_account = new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(total_account);
 
         // get all budget and their total amount
-
         let total_budget = 0;
         if (response.data.budget) {
             for (let i = 1; i <= 9; i++) {

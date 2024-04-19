@@ -4,13 +4,15 @@ const axios = require("axios");
 let categories = ["Food", "Transportation", "Rent & Utilities", "Entertainment", "Salary", "Investments", "Healthcare", "Education", "Others"];
 
 function accounts(req, res, next) {
-    console.log(req.session.user);
     console.log(req.method, req.url);
     if (!req.session.user) {
         res.redirect("/login");
     }
 
+    // url to get data
     let url = `http://localhost:3000/accounts/${req.session.user.user_id}`;
+
+    // if user specified the account to get the transactions
     if (req.query.account_id)
     {
         url = `http://localhost:3000/accounts/${req.session.user.user_id}/${req.query.account_id}`
@@ -19,6 +21,7 @@ function accounts(req, res, next) {
     axios.get(url).then((response) => {
         console.log(response.data);
 
+        // get accounts
         let total_account = 0;
         if (response.data.accounts) {
             for (let i = 0; i < response.data.accounts.length; i++) {

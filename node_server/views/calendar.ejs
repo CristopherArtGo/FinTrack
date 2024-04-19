@@ -3,13 +3,44 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+        <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self'" /> -->
         <title>Calendar</title>
         <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
         <link rel="stylesheet" href="../css/global.css" />
         <script src="../js/bootstrap/bootstrap.js"></script>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script> -->
-        <script src="../js/calendar.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+        <!-- <script src="../js/calendar.js"></script> -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let calendarEvents = [];
+
+                (async function () {
+                    response = await fetch("/get_all_events");
+                    data = await response.json();
+
+                    for (let i = 0; i < data.events.length; i++) {
+                        calendarEvents.push({
+                            title: data.events[i].name,
+                            start: new Date(data.events[i].event_date).toLocaleDateString("en-CA"),
+                        });
+                    }
+
+                    let calendarElement = document.getElementById("calendar");
+                    let calendar = new FullCalendar.Calendar(calendarElement, {
+                        initialView: "dayGridMonth",
+                        initialDate: new Date(),
+                        headerToolbar: {
+                            left: "prev",
+                            center: "title",
+                            right: "next",
+                        },
+                        events: calendarEvents,
+                    });
+
+                    calendar.render();
+                })();
+            });
+        </script>
     </head>
     <body class="min-vh-100">
         <main class="row min-vh-100 g-0">
@@ -84,43 +115,32 @@
                                 </div>
                             </div>
 
-                            <table class="table table-light table-striped table-hover">
+                            <table class="table table-light table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">Events Today</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%_ for(let i = 0; i < events_today.length; i++) { _%>
                                     <tr>
-                                        <td>4/20: Pay Electricity Bill</td>
+                                        <td><%= new Date(events_today[i].event_date).toLocaleDateString('en-US') %> <%= events_today[i].name %></td>
                                     </tr>
+                                    <%_ } _%>
                                 </tbody>
                             </table>
-                            <table class="table table-light table-striped table-hover">
+                            <table class="table table-light table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">Upcoming Events</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%_ for(let i = 0; i < upcoming_events.length; i++) { _%>
                                     <tr>
-                                        <td>4/21: Pay Electricity Bill</td>
+                                        <td><%= new Date(upcoming_events[i].event_date).toLocaleDateString('en-US') %> <%= upcoming_events[i].name %></td>
                                     </tr>
-                                    <tr>
-                                        <td>4/21: Pay Electricity Bill</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4/21: Pay Electricity Bill</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4/21: Pay Electricity Bill</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4/21: Pay Electricity Bill</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4/21: Pay Electricity Bill</td>
-                                    </tr>
+                                    <%_ } _%>
                                 </tbody>
                             </table>
                         </div>

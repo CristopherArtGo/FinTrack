@@ -1,6 +1,5 @@
 const path = require("path");
 const axios = require("axios");
-const { error } = require("console");
 
 function login(req, res, next) {
     console.log(req.method, req.url);
@@ -10,11 +9,6 @@ function login(req, res, next) {
 function register(req, res, next) {
     console.log(req.method, req.url);
     res.render(path.join(__dirname, "../", "views", "register"), { errors: req.flash("errors") });
-}
-
-function calendar(req, res, next) {
-    console.log(req.method, req.url);
-    res.render(path.join(__dirname, "../", "views", "calendar"));
 }
 
 function logout(req, res, next) {
@@ -50,7 +44,6 @@ function login_user(req, res, next) {
         axios
             .post("http://localhost:3000/login", req.body)
             .then((response) => {
-                // console.log(response.data);
                 req.session.user = { user_id: response.data.user.id, email_address: response.data.user.email_address };
                 res.redirect("/dashboard");
             })
@@ -62,9 +55,4 @@ function login_user(req, res, next) {
     }
 }
 
-// function objToParams(obj) {
-//     const queryString = new URLSearchParams(obj);
-//     return queryString.toString();
-// }
-
-module.exports = { login, register, calendar, login_user, register_user, logout };
+module.exports = { login, register, login_user, register_user, logout };
