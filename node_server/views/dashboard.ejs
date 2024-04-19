@@ -132,31 +132,23 @@
                                     </a>
                                 </p>
                             </div>
-                            <h6 class="mb-3">Total Amount: 100,000.00</h6>
+                            <h6 class="mb-3">Total Amount: <%= total_account %></h6>
                             <table class="table table-light table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">Account</th>
-                                        <th scope="col">Current Amount</th>
-                                        <th scope="col">Month Change</th>
+                                        <th scope="col" class="text-end">Current Amount</th>
+                                        <th scope="col" class="text-end">Month Change</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%_ for (let i = 0; i < accounts.length; i++ ) { _%>
                                     <tr>
-                                        <td>Wallet</td>
-                                        <td>10,000.00</td>
-                                        <td class="text-success">10,000.00</td>
+                                        <td><%= accounts[i].name %></td>
+                                        <td class="text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(accounts[i].amount) %></td>
+                                        <td class="text-success text-end">N/A</td>
                                     </tr>
-                                    <tr>
-                                        <td>Bank A</td>
-                                        <td>50,000.00</td>
-                                        <td class="text-danger">1,000.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bank B</td>
-                                        <td>40,000.00</td>
-                                        <td class="text-danger">4,900.00</td>
-                                    </tr>
+                                    <%_ } _%>
                                 </tbody>
                             </table>
                         </div>

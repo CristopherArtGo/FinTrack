@@ -1,7 +1,10 @@
-POST http://localhost:8000/login_user/ 
+POST http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "email_address": "atest@email.com",
-    "password": "none"
+  "first_name": "",
+  "last_name": "",
+  "email_address": "@email.com",
+  "password": "12345678",
+  "password_confirmation": "12345678"
 }

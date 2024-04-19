@@ -25,6 +25,9 @@
                     <%_ if (errors) { for (let i = 0; i < errors.length; i++) { _%>
                         <p class="text-danger"><%= errors[i] %></p>
                     <%_ } } _%>
+                    <%_ if (success) { for (let i = 0; i < success.length; i++) { _%>
+                        <p class="text-success"><%= success[i] %></p>
+                    <%_ } } _%>
                     <h1 class="my-3 col-8">Login</h1>
                     <div class="mb-3 col-8">
                         <label for="email_address" class="form-label">Email address</label>
