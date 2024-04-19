@@ -81,27 +81,21 @@
                                     </a>
                                 </p>
                             </div>
-                            <h6 class="mb-3">Total Amount: 100,000.00</h6>
+                            <h6 class="mb-3">Total Amount: <%= total_account %></h6>
                             <table class="table table-light table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">Account</th>
-                                        <th scope="col">Current Amount</th>
+                                        <th scope="col" class="text-end">Current Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%_ for (let i = 0; i < accounts.length; i++ ) { _%>
                                     <tr>
-                                        <td>Wallet</td>
-                                        <td>10,000.00</td>
+                                        <td><%= accounts[i].name %></td>
+                                        <td class="text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(accounts[i].amount) %></td>
                                     </tr>
-                                    <tr>
-                                        <td>Bank A</td>
-                                        <td>50,000.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bank B</td>
-                                        <td>40,000.00</td>
-                                    </tr>
+                                    <%_ } _%>
                                 </tbody>
                             </table>
                         </div>
@@ -121,18 +115,19 @@
                                 </a>
                             </div>
                         </div>
-                        <form action="" class="mb-3">
+                        <form action="/accounts/" method="get" class="mb-3">
                             <div class="row">
                                 <div class="col-md-4 align-items-center d-flex">
-                                    <select class="form-select mb-3">
-                                        <option value="1">All Accounts</option>
-                                        <option value="2">Wallet</option>
-                                        <option value="3">Bank A</option>
+                                    <select class="form-select mb-3" name="account_id">
+                                        <option disabled selected>All Accounts</option>
+                                        <%_ for (let i = 0; i < accounts.length; i++) { _%>
+                                        <option value="<%= accounts[i].id %>"><%= accounts[i].name %></option>
+                                        <%_ } _%>
                                     </select>
                                 </div>
                                 <div class="col-md-4 d-flex mb-3">
                                     <input type="text" name="search" id="search" placeholder="Search Transaction" class="form-control" />
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button submit" class="btn btn-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                                         </svg>
@@ -146,86 +141,30 @@
                                     <th scope="col">Date</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Category</th>
-                                    <th scope="col">Amount</th>
+                                    <th scope="col" class="text-end">Amount</th>
                                     <th scope="col">Notes</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <%_ for (let i = 0; i < transactions.length; i++ ) { _%>
                                 <tr>
-                                    <td>04/20/2024</td>
-                                    <td>Jolibee</td>
+                                    <td><%= (new Date(transactions[i].created_at)).toLocaleDateString('en-US'); %></td>
+                                    <td><%= transactions[i].description %></td>
                                     <td>
                                         <form action="">
                                             <select class="form-select form-select-sm w-50">
-                                                <option value="1">Food</option>
-                                                <option value="2">Transportation</option>
-                                                <option value="3">Rent & Utilities</option>
+                                                <%_ for(let j = 0; j < categories.length; j++) { _%> <%_ if (j + 1 === transactions[i].category) { _%>
+                                                <option value="<%= j + 1 %>" selected><%= categories[j] %></option>
+                                                <%_ } else {_%>
+                                                <option value="<%= j + 1 %>"><%= categories[j] %></option>
+                                                <%_ }_%> <%_ }_%>
                                             </select>
                                         </form>
                                     </td>
-                                    <td class="text-danger">450.00</td>
-                                    <td></td>
+                                    <td class="text-danger text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(transactions[i].amount) %></td>
+                                    <td><%= transactions[i].notes %></td>
                                 </tr>
-                                <tr>
-                                    <td>04/20/2024</td>
-                                    <td>Jolibee</td>
-                                    <td>
-                                        <form action="">
-                                            <select class="form-select form-select-sm w-50">
-                                                <option value="1">Food</option>
-                                                <option value="2">Transportation</option>
-                                                <option value="3">Rent & Utilities</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                    <td class="text-danger">450.00</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>04/20/2024</td>
-                                    <td>Jolibee</td>
-                                    <td>
-                                        <form action="" class="">
-                                            <select class="form-select form-select-sm w-50">
-                                                <option value="1">Food</option>
-                                                <option value="2">Transportation</option>
-                                                <option value="3">Rent & Utilities</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                    <td class="text-danger">450.00</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>04/20/2024</td>
-                                    <td>Jolibee</td>
-                                    <td>
-                                        <form action="" class="">
-                                            <select class="form-select form-select-sm w-50">
-                                                <option value="1">Food</option>
-                                                <option value="2">Transportation</option>
-                                                <option value="3">Rent & Utilities</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                    <td class="text-danger">450.00</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>04/20/2024</td>
-                                    <td>Jolibee</td>
-                                    <td>
-                                        <form action="" class="">
-                                            <select class="form-select form-select-sm w-50">
-                                                <option value="1">Food</option>
-                                                <option value="2">Transportation</option>
-                                                <option value="3">Rent & Utilities</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                    <td class="text-danger">450.00</td>
-                                    <td></td>
-                                </tr>
+                                <%_ }_%>
                             </tbody>
                         </table>
                     </div>

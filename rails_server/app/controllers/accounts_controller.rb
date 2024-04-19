@@ -10,7 +10,7 @@ class AccountsController < ApplicationController
             if (!params[:account_id].nil?)
                 account_transactions = user.accounts.find(params[:account_id]).transactions.where("created_at >= ?", Date.today.at_beginning_of_month).order(created_at: :desc)
             else
-                account_transactions = user.accounts.joins(:transactions).where("transactions.created_at >= ?", Date.today.at_beginning_of_month).select('transactions.*').order(created_at: :desc)
+                account_transactions = user.accounts.joins(:transactions).where("transactions.created_at >= ?", Date.today.at_beginning_of_month).select('transactions.*').order("transactions.created_at DESC")
             end
 
             response = {

@@ -4,12 +4,19 @@ const axios = require("axios");
 let categories = ["Food", "Transportation", "Rent & Utilities", "Entertainment", "Salary", "Investments", "Healthcare", "Education", "Others"];
 
 function accounts(req, res, next) {
+    console.log(req.session.user);
     console.log(req.method, req.url);
     if (!req.session.user) {
         res.redirect("/login");
     }
 
-    axios.get(`http://localhost:3000/accounts/${req.session.user.user_id}`).then((response) => {
+    let url = `http://localhost:3000/accounts/${req.session.user.user_id}`;
+    if (req.query.account_id)
+    {
+        url = `http://localhost:3000/accounts/${req.session.user.user_id}/${req.query.account_id}`
+    }
+
+    axios.get(url).then((response) => {
         console.log(response.data);
 
         let total_account = 0;
@@ -40,7 +47,7 @@ function accounts(req, res, next) {
                 }
             }
         }
-        view_data = { accounts: response.data.accounts, total_account: total_account, account_expenses: account_expenses, total_expenses: total_expenses, category_expenses: category_expenses, categories: categories };
+        view_data = { accounts: response.data.accounts, total_account: total_account, account_expenses: account_expenses, total_expenses: total_expenses, category_expenses: category_expenses, categories: categories, transactions: response.data.transactions };
         res.render(path.join(__dirname, "../", "views", "accounts"), view_data);
     });
 }

@@ -162,17 +162,17 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Category</th>
-                                        <th scope="col">Budget Planned</th>
-                                        <th scope="col">Month Change</th>
+                                        <th scope="col" class="text-end">Budget Planned</th>
+                                        <th scope="col" class="text-end">Month Change</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <%_ for (let i = 0; i < categories.length; i++) { _%>
                                     <tr>
                                         <td><%= categories[i] %></td>
-                                        <td><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(budget[`category_${i + 1}`]) %></td>
+                                        <td class="text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(budget[`category_${i + 1}`]) %></td>
                                         <%_ let color _%> <%_ category_expenses[i] > 0 ? color = "danger" : color = "success"_%>
-                                        <td class="text-<%= color %>"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(category_expenses[i]) %></td>
+                                        <td class="text-end text-<%= color %>"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(category_expenses[i]) %></td>
                                     </tr>
                                     <%_ } _%>
                                 </tbody>
