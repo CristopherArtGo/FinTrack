@@ -47,13 +47,17 @@ class UsersController < ApplicationController
         user = User.find(params[:id])
         if !user.nil?
             accounts = user.accounts
-            # transactions
-            # accounts.each |account| do 
-            #     transactions = 
-            # end
+            budget = user.budget
+            account_transactions = []
+            accounts.each do |account| 
+                account_transactions.push(account.transactions.where("created_at >= ?", Date.today.at_beginning_of_month))
+            end
+            
             response = {
                 user: user,
                 accounts: accounts,
+                budget: budget,
+                transactions: account_transactions,
                 status: "received from PORT 3000"
             }
             render json: response
@@ -61,6 +65,8 @@ class UsersController < ApplicationController
             render json: {
                 user: nil,
                 accounts: nil,
+                budget: nil,
+                transactions: nil,
                 status: "received from PORT 3000"
             }
         end

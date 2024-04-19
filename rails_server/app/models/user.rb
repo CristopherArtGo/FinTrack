@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
     has_many :accounts, dependent: :destroy
     has_many :events, dependent: :destroy
+    has_one :budget
 
     validates :first_name, :last_name, :email_address, :password, :password_confirmation, presence: true
     validates :password, confirmation: true, length: { minimum: 8 }

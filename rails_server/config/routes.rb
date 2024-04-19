@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "register" => "users#create"
 
   get "dashboard/:id" => "users#dashboard"
+  get "accounts/:id" => "accounts#transactions"
   # Defines the root path route ("/")
   # root "posts#index"
 end

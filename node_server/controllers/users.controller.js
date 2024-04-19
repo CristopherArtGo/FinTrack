@@ -3,17 +3,13 @@ const axios = require("axios");
 const { error } = require("console");
 
 function login(req, res, next) {
+    console.log(req.method, req.url);
     res.render(path.join(__dirname, "../", "views", "login"), { errors: req.flash("errors"), success: req.flash("success") });
 }
 
 function register(req, res, next) {
     console.log(req.method, req.url);
     res.render(path.join(__dirname, "../", "views", "register"), { errors: req.flash("errors") });
-}
-
-function accounts(req, res, next) {
-    console.log(req.method, req.url);
-    res.render(path.join(__dirname, "../", "views", "accounts"));
 }
 
 function calendar(req, res, next) {
@@ -44,6 +40,7 @@ function register_user(req, res, next) {
 }
 
 function login_user(req, res, next) {
+    console.log(req.method, req.url, req.body);
 
     if (!req.body.email_address || !req.body.password) {
         let errors = ["Invalid Credentials"];
@@ -65,9 +62,9 @@ function login_user(req, res, next) {
     }
 }
 
-function objToParams(obj) {
-    const queryString = new URLSearchParams(obj);
-    return queryString.toString();
-}
+// function objToParams(obj) {
+//     const queryString = new URLSearchParams(obj);
+//     return queryString.toString();
+// }
 
-module.exports = { login, register, accounts, calendar, login_user, register_user, logout };
+module.exports = { login, register, calendar, login_user, register_user, logout };

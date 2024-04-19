@@ -90,7 +90,7 @@
                                 </span>
                                 Target Budget
                             </p>
-                            <h3 class="mt-0">20,000.00</h3>
+                            <h3 class="mt-0"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(total_budget) %></h3>
                         </div>
                         <div class="col-sm-4 d-flex flex-column align-items-center">
                             <p class="mb-0">
@@ -101,7 +101,7 @@
                                 </span>
                                 Budget Spent
                             </p>
-                            <h3 class="mt-0">14,499.00</h3>
+                            <h3 class="mt-0"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(total_expenses) %></h3>
                         </div>
                         <div class="col-sm-4 d-flex flex-column align-items-center">
                             <p class="mb-0">
@@ -112,7 +112,7 @@
                                 </span>
                                 Remaining Budget
                             </p>
-                            <h3 class="mt-0">5,501.00</h3>
+                            <h3 class="mt-0"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(total_budget - total_expenses) %></h3>
                         </div>
                     </div>
                     <div class="container-fluid text-center mb-3">
@@ -146,7 +146,11 @@
                                     <tr>
                                         <td><%= accounts[i].name %></td>
                                         <td class="text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(accounts[i].amount) %></td>
-                                        <td class="text-success text-end">N/A</td>
+                                        <%_ if (account_expenses[i] > 0) { _%>
+                                        <td class="text-danger text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(account_expenses[i]) %></td>
+                                        <%_ } else { _%>
+                                        <td class="text-success text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(Math.abs(account_expenses[i])) %></td>
+                                        <%_ } _%>
                                     </tr>
                                     <%_ } _%>
                                 </tbody>
@@ -163,51 +167,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%_ for (let i = 0; i < categories.length; i++) { _%>
                                     <tr>
-                                        <td>Food</td>
-                                        <td>10,000.00</td>
-                                        <td class="text-danger">10,000.00</td>
+                                        <td><%= categories[i] %></td>
+                                        <td><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(budget[`category_${i + 1}`]) %></td>
+                                        <%_ let color _%> <%_ category_expenses[i] > 0 ? color = "danger" : color = "success"_%>
+                                        <td class="text-<%= color %>"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(category_expenses[i]) %></td>
                                     </tr>
-                                    <tr>
-                                        <td>Transportation</td>
-                                        <td>5,000.00</td>
-                                        <td class="text-danger">2,000.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rent and Utilities</td>
-                                        <td>10,000.00</td>
-                                        <td class="text-danger">4,900.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Entertainment</td>
-                                        <td>10,000.00</td>
-                                        <td class="text-danger">4,900.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Salary</td>
-                                        <td>10,000.00</td>
-                                        <td class="text-success">4,900.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Investments</td>
-                                        <td>10,000.00</td>
-                                        <td class="text-danger">4,900.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Healthcare</td>
-                                        <td>10,000.00</td>
-                                        <td class="text-danger">4,900.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Education</td>
-                                        <td>10,000.00</td>
-                                        <td class="text-danger">4,900.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Others</td>
-                                        <td>10,000.00</td>
-                                        <td class="text-danger">4,900.00</td>
-                                    </tr>
+                                    <%_ } _%>
                                 </tbody>
                             </table>
                         </div>

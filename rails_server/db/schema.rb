@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_18_150332) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_19_020927) do
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name"
@@ -18,6 +18,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_150332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "budgets", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.decimal "category_1", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "category_2", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "category_3", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "category_4", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "category_5", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "category_6", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "category_7", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "category_8", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "category_9", precision: 10, scale: 2, default: "0.0", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_budgets_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -52,6 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_150332) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "budgets", "users"
   add_foreign_key "events", "users"
   add_foreign_key "transactions", "accounts"
 end
