@@ -3,13 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self'" /> -->
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
         <title>Calendar</title>
         <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
         <link rel="stylesheet" href="../css/global.css" />
         <script src="../js/bootstrap/bootstrap.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-        <!-- <script src="../js/calendar.js"></script> -->
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 let calendarEvents = [];
@@ -103,15 +102,11 @@
                 <h1 class="pt-3 mb-3">CALENDAR</h1>
                 <div class="container-fluid">
                     <div class="row gy-3 mb-3">
-                        <div class="col-xl-4 bg-light p-3 rounded-4 column container me-3 mb-3">
+                        <div class="col-xl-4 bg-light p-3 rounded-4 column container me-3 mb-3 border">
                             <div class="row">
-                                <h2 class="fw-bold col-10">Events</h2>
-                                <div class="col-2 text-end">
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus-fill" viewBox="0 0 16 16">
-                                            <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2M8.5 8.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5a.5.5 0 0 1 1 0" />
-                                        </svg>
-                                    </a>
+                                <h2 class="fw-bold col">Events</h2>
+                                <div class="col text-end">
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_event">New Event</button>
                                 </div>
                             </div>
 
@@ -147,6 +142,32 @@
                         <div class="col bg-light container rounded-4 mb-3 p-3 bg-dark text-light">
                             <div id="calendar"></div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="new_event" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">New Event</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="add_event" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" placeholder="Event Name" name="name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="event_date">Event Date</label>
+                                    <input type="date" class="form-control" name="event_date" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button " class="btn btn-success" data-bs-dismiss="modal">Add Event</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -54,7 +54,6 @@ class UsersController < ApplicationController
             end
             
             response = {
-                user: user,
                 accounts: accounts,
                 budget: budget,
                 transactions: account_transactions,
@@ -63,7 +62,6 @@ class UsersController < ApplicationController
             render json: response
         else 
             render json: {
-                user: nil,
                 accounts: nil,
                 budget: nil,
                 transactions: nil,

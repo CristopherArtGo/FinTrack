@@ -68,17 +68,10 @@
             </nav>
             <div class="container-fluid main column">
                 <h1 class="pt-3 mb-3 page-title">DASHBOARD</h1>
-                <div class="container-fluid bg-light p-3 mw-100 mb-3 rounded-4">
+                <div class="container-fluid bg-light p-3 mw-100 mb-3 rounded-4 border">
                     <div class="row mb-3">
-                        <h2 class="fw-bold col-7">April Summary</h2>
-                        <p class="col-4 text-end">Status: <span class="text-success">On Track</span></p>
-                        <p class="col-1 text-end">
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
-                                </svg>
-                            </a>
-                        </p>
+                        <h2 class="fw-bold col">April Summary</h2>
+                        <p class="col text-end">Status: <span class="text-success">On Track</span></p>
                     </div>
                     <div class="container row mb-3 text-center">
                         <div class="col-sm-4 d-flex flex-column align-items-center">
@@ -121,17 +114,8 @@
                 </div>
                 <div class="container-fluid mb-3">
                     <div class="row gy-3 d-flex">
-                        <div class="col-md bg-light p-3 rounded-4 column me-3">
-                            <div class="row">
-                                <h2 class="fw-bold col-10">Accounts</h2>
-                                <p class="col-2 text-end">
-                                    <a href="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
-                                        </svg>
-                                    </a>
-                                </p>
-                            </div>
+                        <div class="col-md bg-light p-3 rounded-4 column me-3 border">
+                            <a href="/accounts"><h2 class="fw-bold col-10">Accounts</h2></a>
                             <h6 class="mb-3">Total Amount: <%= total_account %></h6>
                             <table class="table table-light table-striped table-hover">
                                 <thead>
@@ -156,7 +140,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="column col-md bg-light p-3 rounded-4">
+                        <div class="column col-md bg-light p-3 rounded-4 border">
                             <h2 class="fw-bold">Categories</h2>
                             <table class="table table-light table-striped table-hover">
                                 <thead>
@@ -180,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid bg-light p-3 rounded-4">
+                <div class="container-fluid bg-light p-3 rounded-4 border">
                     <h2 class="fw-bold">Stats</h2>
                     <form action="" class="mb-3">
                         <select class="form-select" aria-label="Default select example">

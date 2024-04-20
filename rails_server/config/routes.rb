@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "dashboard/:id" => "users#dashboard"
   get "accounts/:id/" => "accounts#transactions"
   get "accounts/:id/:account_id" => "accounts#transactions"
+  get "accounts/:id/:account_id/:category" => "accounts#transactions"
   get "calendar/:id" => "events#calendar"
   get "all_events/:id" => "events#get_all_events"
   # Defines the root path route ("/")

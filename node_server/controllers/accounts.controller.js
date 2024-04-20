@@ -13,9 +13,14 @@ function accounts(req, res, next) {
     let url = `http://localhost:3000/accounts/${req.session.user.user_id}`;
 
     // if user specified the account to get the transactions
-    if (req.query.account_id)
-    {
-        url = `http://localhost:3000/accounts/${req.session.user.user_id}/${req.query.account_id}`
+    if (req.query.account_id) {
+        url += `/${req.query.account_id}`;
+    } else if (req.query.category) {
+        url += `/nil`;
+    }
+
+    if (req.query.category) {
+        url += `/${req.query.category}`;
     }
 
     axios.get(url).then((response) => {
@@ -50,8 +55,32 @@ function accounts(req, res, next) {
                 }
             }
         }
-        view_data = { accounts: response.data.accounts, total_account: total_account, account_expenses: account_expenses, total_expenses: total_expenses, category_expenses: category_expenses, categories: categories, transactions: response.data.transactions };
+        view_data = { accounts: response.data.accounts, total_account: total_account, account_expenses: account_expenses, total_expenses: total_expenses, category_expenses: category_expenses, categories: categories, transactions: response.data.transactions, current_account: response.data.current_account };
         res.render(path.join(__dirname, "../", "views", "accounts"), view_data);
+    });
+}
+
+function create_transaction(req, res, next) {
+    console.log(req.method, req.url);
+    if (!req.session.user) {
+        res.redirect("/login");
+    }
+}
+
+function create_account(req, res, next) {
+    console.log(req.method, req.url, req.body);
+    req.body.user_id = req.session.user.user_id;
+
+    axios.post("http://localhost:3000/add_account", req.body).then((response) => {
+        console.log(response.data);
+
+        if (response.data.errors) {
+            req.flash("errors", response.data.errors);
+        } else {
+            req.flash("success", response.data.message);
+            res.redirect("/login");
+        }
+        res.redirect("/accounts");
     });
 }
 

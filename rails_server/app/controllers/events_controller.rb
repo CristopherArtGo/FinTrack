@@ -6,9 +6,7 @@ class EventsController < ApplicationController
             events_today = user.events.where(:event_date => Date.today.beginning_of_day..Date.today.end_of_day)
             upcoming_events = user.events.where("event_date > ?", Date.today.end_of_day)
 
-
             response = {
-                user: user,
                 events_today: events_today,
                 upcoming_events: upcoming_events,
                 status: "received from PORT 3000"
@@ -17,7 +15,6 @@ class EventsController < ApplicationController
 
         else 
             render json: {
-                user: nil,
                 events_today: nil,
                 upcoming_events: nil,
                 status: "received from PORT 3000"
