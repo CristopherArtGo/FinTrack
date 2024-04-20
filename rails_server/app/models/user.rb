@@ -10,7 +10,8 @@ class User < ApplicationRecord
     validates :email_address, uniqueness: true
 
     before_save :encrypt_password
-
+    after_save :create_budget
+    
     private
     def encrypt_password
         self.salt = Digest::SHA2.hexdigest("#{Time.now.utc}--#{password}}")
@@ -19,6 +20,10 @@ class User < ApplicationRecord
 
     def encrypt(password)
         Digest::SHA2.hexdigest("#{self.salt}--#{password}")
+    end
+
+    def create_budget
+        Budget.create(user: self)
     end
 
 end

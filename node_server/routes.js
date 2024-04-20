@@ -15,4 +15,8 @@ Router.post("/register_user", UsersController.register_user);
 Router.post("/login_user", UsersController.login_user);
 Router.get("/logout", UsersController.logout);
 Router.get("/get_all_events", CalendarController.getAllEvents);
+Router.post("/create_account", AccountsController.createAccount);
+Router.post("/create_transaction", AccountsController.createTransaction);
+Router.post("/create_event", CalendarController.createEvent);
+
 module.exports = Router;

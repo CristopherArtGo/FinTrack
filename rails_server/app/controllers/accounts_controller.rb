@@ -37,7 +37,42 @@ class AccountsController < ApplicationController
                 status: "received from PORT 3000"
             }
         end
-
     end
+
+    def create_account
+        user = User.find(params[:id])
+        account = Account.new(name: params[:name], amount: params[:amount], user: user)
+        if account.save
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: account.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
+
+    def create_transaction
+        user = User.find(params[:id])
+        account = user.accounts.find(params[:account_id])
+        transaction = account.transactions.new(description: params[:description], category: params[:category], amount: params[:amount], notes: params[:notes])
+        if transaction.save
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: transaction.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
+
 
 end

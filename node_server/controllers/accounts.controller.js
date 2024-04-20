@@ -5,6 +5,7 @@ let categories = ["Food", "Transportation", "Rent & Utilities", "Entertainment",
 
 function accounts(req, res, next) {
     console.log(req.method, req.url);
+
     if (!req.session.user) {
         res.redirect("/login");
     }
@@ -55,33 +56,41 @@ function accounts(req, res, next) {
                 }
             }
         }
-        view_data = { accounts: response.data.accounts, total_account: total_account, account_expenses: account_expenses, total_expenses: total_expenses, category_expenses: category_expenses, categories: categories, transactions: response.data.transactions, current_account: response.data.current_account };
+        view_data = { accounts: response.data.accounts, total_account: total_account, account_expenses: account_expenses, total_expenses: total_expenses, category_expenses: category_expenses, categories: categories, transactions: response.data.transactions, current_account: response.data.current_account, errors: req.flash("errors") };
         res.render(path.join(__dirname, "../", "views", "accounts"), view_data);
     });
 }
 
-function create_transaction(req, res, next) {
-    console.log(req.method, req.url);
-    if (!req.session.user) {
-        res.redirect("/login");
-    }
-}
-
-function create_account(req, res, next) {
+function createTransaction(req, res, next) {
     console.log(req.method, req.url, req.body);
-    req.body.user_id = req.session.user.user_id;
+    req.body.id = req.session.user.user_id;
 
-    axios.post("http://localhost:3000/add_account", req.body).then((response) => {
+    axios.post("http://localhost:3000/create_transaction", req.body).then((response) => {
         console.log(response.data);
 
         if (response.data.errors) {
             req.flash("errors", response.data.errors);
         } else {
             req.flash("success", response.data.message);
-            res.redirect("/login");
         }
         res.redirect("/accounts");
     });
 }
 
-module.exports = { accounts };
+function createAccount(req, res, next) {
+    console.log(req.method, req.url, req.body);
+    req.body.id = req.session.user.user_id;
+
+    axios.post("http://localhost:3000/create_account", req.body).then((response) => {
+        console.log(response.data);
+
+        if (response.data.errors) {
+            req.flash("errors", response.data.errors);
+        } else {
+            req.flash("success", response.data.message);
+        }
+        res.redirect("/accounts");
+    });
+}
+
+module.exports = { accounts, createAccount, createTransaction };

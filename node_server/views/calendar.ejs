@@ -3,12 +3,13 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+        <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self'" /> -->
         <title>Calendar</title>
         <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
         <link rel="stylesheet" href="../css/global.css" />
         <script src="../js/bootstrap/bootstrap.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 let calendarEvents = [];
@@ -38,6 +39,10 @@
 
                     calendar.render();
                 })();
+
+                if ($("#errors_modal")) {
+                    $("#errors_modal").modal("show");
+                }
             });
         </script>
     </head>
@@ -152,7 +157,7 @@
                             <h1 class="modal-title fs-5">New Event</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="add_event" method="post">
+                        <form action="create_event" method="post">
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="name">Name</label>
@@ -171,6 +176,23 @@
                     </div>
                 </div>
             </div>
+            <%_ if (errors.length) { _%>
+            <div id="errors_modal" class="modal fade" id="new_account" tabindex="1" aria-hidden="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Error</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <%_ for (let i = 0; i < errors.length; i++) { _%>
+                            <p class="text-danger"><%= errors[i] %></p>
+                            <%_ } _%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%_ } _%>
         </main>
     </body>
 </html>

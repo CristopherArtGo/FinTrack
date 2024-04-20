@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def calendar
         user = User.find(params[:id])
 
@@ -40,7 +42,24 @@ class EventsController < ApplicationController
                 status: "received from PORT 3000"
             }
         end
-
     end
+
+    def create_event
+        user = User.find(params[:id])
+        event = user.events.new(name: params[:name], event_date: params[:event_date])
+        if event.save
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: event.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
+
 end
 

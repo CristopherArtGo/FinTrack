@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get "accounts/:id/:account_id/:category" => "accounts#transactions"
   get "calendar/:id" => "events#calendar"
   get "all_events/:id" => "events#get_all_events"
+
+  post "create_account" => "accounts#create_account"
+  post "create_transaction" => "accounts#create_transaction"
+  post "create_event" => "events#create_event"
   # Defines the root path route ("/")
   # root "posts#index"
 end

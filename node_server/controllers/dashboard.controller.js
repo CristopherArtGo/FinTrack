@@ -9,7 +9,6 @@ function dashboard(req, res, next) {
         res.redirect("/login");
     }
     axios.get(`http://localhost:3000/dashboard/${req.session.user.user_id}`).then((response) => {
-
         // get all accounts and their total amount
         let total_account = 0;
         if (response.data.accounts) {
@@ -47,9 +46,10 @@ function dashboard(req, res, next) {
                         account_expenses[i] += parseFloat(response.data.transactions[i][j].amount);
                         total_expenses += parseFloat(response.data.transactions[i][j].amount);
                         category_expenses[parseInt(response.data.transactions[i][j].category) - 1] += parseFloat(response.data.transactions[i][j].amount);
+
                     } else {
                         account_expenses[i] -= response.data.transactions[i][j].amount;
-                        category_expenses[parseInt(response.data.transactions[i][j].category) - 1] -= parseFloat(response.data.transactions[i][j].amount);
+                        category_expenses[parseInt(response.data.transactions[i][j].category) - 1] -=  parseFloat(response.data.transactions[i][j].amount);
                     }
                 }
             }
