@@ -4,7 +4,7 @@ nav.sidebar {
     height: 100vh;
 }
 
-div.logo  {
+div.logo {
     height: 50%;
 }
 
@@ -25,8 +25,18 @@ table {
     overflow: scroll;
 }
 
+.fc .fc-col-header-cell-cushion,
+.fc .fc-daygrid-day-number {
+    color: white;
+}
+
+.fc-direction-ltr .fc-daygrid-event.fc-event-end,
+.fc-direction-rtl .fc-daygrid-event.fc-event-start {
+    background-color: green;
+}
+
 @media only screen and (max-width: 767px) {
-    div.logo  {
+    div.logo {
         height: 0;
     }
 

@@ -3,7 +3,10 @@ const axios = require("axios");
 
 function login(req, res, next) {
     console.log(req.method, req.url);
-    res.render(path.join(__dirname, "../", "views", "login"), { errors: req.flash("errors"), success: req.flash("success") });
+    // if (req.body.electronToken === "2d7b1a1f73088b0a36e759c689a7ca0b29af15bbae286b67cf1ab7f41d994e24d190e78ba9c8744845b6ae4ba12e9594f2155c610c527d24a3ab8d083ad2afbc") {
+        res.render(path.join(__dirname, "../", "views", "login"), { errors: req.flash("errors"), success: req.flash("success") });
+    // }
+    // res.sendStatus(404);
 }
 
 function register(req, res, next) {

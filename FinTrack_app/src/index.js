@@ -25,7 +25,15 @@ const createWindow = () => {
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools();
-    mainWindow.loadURL("http://localhost:8000/login");
+    mainWindow.loadURL("http://localhost:8000/login", {
+        postData: [
+            {
+                type: "rawData",
+                bytes: Buffer.from("electronToken=2d7b1a1f73088b0a36e759c689a7ca0b29af15bbae286b67cf1ab7f41d994e24d190e78ba9c8744845b6ae4ba12e9594f2155c610c527d24a3ab8d083ad2afbc" ),
+            },
+        ],
+        extraHeaders: "Content-Type: application/x-www-form-urlencoded; charset=UTF-8",
+    });
 };
 
 // About window

@@ -5,6 +5,7 @@ const DashboardController = require(`./controllers/dashboard.controller`);
 const AccountsController = require(`./controllers/accounts.controller`);
 const CalendarController = require(`./controllers/calendar.controller`);
 
+Router.post("/login", UsersController.login);
 Router.get("/login", UsersController.login);
 Router.get("/register", UsersController.register);
 Router.get("/dashboard", DashboardController.dashboard);
