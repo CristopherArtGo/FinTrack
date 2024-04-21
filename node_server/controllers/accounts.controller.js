@@ -119,6 +119,21 @@ function editAccount(req, res, next) {
     });
 }
 
+function deleteAccount(req, res, next) {
+    console.log(req.method, req.url, req.body);
+
+    axios.delete(`http://localhost:3000/delete_account/${req.query.account_id}`).then((response) => {
+        console.log(response.data);
+
+        if (response.data.errors) {
+            req.flash("errors", response.data.errors);
+        } else {
+            req.flash("success", response.data.message);
+        }
+        res.redirect("/accounts");
+    });
+}
+
 function transaction(req, res, next) {
     console.log(req.method, req.url);
 
@@ -145,4 +160,19 @@ function editTransaction(req, res, next) {
     });
 }
 
-module.exports = { accounts, createAccount, createTransaction, account, editAccount, transaction, editTransaction };
+function deleteTransaction(req, res, next) {
+    console.log(req.method, req.url, req.body);
+
+    axios.delete(`http://localhost:3000/delete_transaction/${req.query.transaction_id}`).then((response) => {
+        console.log(response.data);
+
+        if (response.data.errors) {
+            req.flash("errors", response.data.errors);
+        } else {
+            req.flash("success", response.data.message);
+        }
+        res.redirect("/accounts");
+    });
+}
+
+module.exports = { accounts, createAccount, createTransaction, account, editAccount, transaction, editTransaction, deleteTransaction, deleteAccount };

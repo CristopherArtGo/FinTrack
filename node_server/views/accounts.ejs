@@ -74,10 +74,9 @@
                             let transaction_is_expense = res.transaction.is_expense;
 
                             $("#new_transaction").find("form").find("input[type='text']").val(transaction_description);
-                            $("#new_transaction").find("form").find("input[type='text']").val(transaction_description);
                             $("#new_transaction").find("form").find("input[type='number']").val(transaction_amount);
                             $("#new_transaction").find("form").find("textarea").val(transaction_notes);
-                            $("#new_transaction").find("form").find("select[name='account']").val(transaction_account).change();
+                            $("#new_transaction").find("form").find("select[name='account_id']").val(transaction_account).change();
                             $("#new_transaction").find("form").find("select[name='category']").val(transaction_category).change();
                             if (transaction_is_expense) {
                                 $("#new_transaction").find("form").find("select[name='is_expense']").val("true").change();
@@ -170,6 +169,7 @@
                                         <th scope="col">Account</th>
                                         <th scope="col" class="text-end">Current Amount</th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -178,6 +178,12 @@
                                         <td><%= accounts[i].name %></td>
                                         <td class="text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(accounts[i].amount) %></td>
                                         <td class="text-end"><button class="btn btn-success edit-account-btn" data-account-id="<%= accounts[i].id %>" data-bs-toggle="modal" data-bs-target="#new_account">Edit</button></td>
+                                        <td class="text-end">
+                                            <%_ let account_id = accounts[i].id _%>
+                                            <form action="/delete_account?account_id=<%= account_id %>" method="post">
+                                                <button class="btn btn-danger delete-account-btn submit">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     <%_ } _%>
                                 </tbody>
@@ -237,6 +243,7 @@
                                     <th scope="col" class="text-end">Amount</th>
                                     <th scope="col" class="w-50 text-center">Notes</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -248,6 +255,12 @@
                                     <td class="text-danger text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(transactions[i].amount) %></td>
                                     <td><%= transactions[i].notes %></td>
                                     <td class="text-end"><button class="btn btn-success edit-transaction-btn" data-transaction-id="<%= transactions[i].id %>" data-bs-toggle="modal" data-bs-target="#new_transaction">Edit</button></td>
+                                    <td class="text-end">
+                                        <%_ let transaction_id = transactions[i].id _%>
+                                        <form action="/delete_transaction?transaction_id=<%= transaction_id %>" method="post">
+                                            <button class="btn btn-danger delete-transaction-btn submit">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 <%_ }_%>
                             </tbody>

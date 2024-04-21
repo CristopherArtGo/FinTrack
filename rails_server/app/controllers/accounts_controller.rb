@@ -59,7 +59,7 @@ class AccountsController < ApplicationController
     def create_transaction
         user = User.find(params[:id])
         account = user.accounts.find(params[:account_id])
-        transaction = account.transactions.new(description: params[:description], category: params[:category], amount: params[:amount], notes: params[:notes])
+        transaction = account.transactions.new(description: params[:description], category: params[:category], amount: params[:amount], notes: params[:notes], is_expense: params[:is_expense])
         if transaction.save
             response = {
                 message: "success",
@@ -103,6 +103,24 @@ class AccountsController < ApplicationController
         render json: response
     end
 
+    def delete_account
+        puts params
+        account = Account.find(params[:account_id])
+
+        if account.destroy
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: account.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
+
     def transaction
         user = User.find(params[:id])
         transaction = Transaction.find(params[:transaction_id])
@@ -138,4 +156,22 @@ class AccountsController < ApplicationController
         render json: response
     end
 
+
+    def delete_transaction
+        puts params
+        transaction = Transaction.find(params[:transaction_id])
+
+        if transaction.destroy
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: transaction.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
 end

@@ -70,4 +70,32 @@ class UsersController < ApplicationController
         end
 
     end
+
+    def edit_budget
+        user = User.find(params[:id])
+        budget = user.budget
+        
+        budget.category_1 = params[:category_1]
+        budget.category_2 = params[:category_2]
+        budget.category_3 = params[:category_3]
+        budget.category_4 = params[:category_4]
+        budget.category_5 = params[:category_5]
+        budget.category_6 = params[:category_6]
+        budget.category_7 = params[:category_7]
+        budget.category_8 = params[:category_8]
+        budget.category_9 = params[:category_9]
+
+        if budget.save
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: budget.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
 end

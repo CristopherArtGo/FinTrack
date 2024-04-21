@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "register" => "users#create"
 
   get "dashboard/:id" => "users#dashboard"
+  patch "edit_budget" => "users#edit_budget"
 
   get "accounts/:id/" => "accounts#transactions"
   get "accounts/:id/:account_id" => "accounts#transactions"
@@ -18,14 +19,17 @@ Rails.application.routes.draw do
   get "event/:id/:event_id" => "events#event"
   post "create_event" => "events#create_event"
   patch "edit_event" => "events#edit_event"
-  
+  delete "delete_event/:event_id" => "accounts#delete_event"
+
   post "create_account" => "accounts#create_account"
   get "account/:id/:account_id" => "accounts#account"
   patch "edit_account" => "accounts#edit_account"
+  delete "delete_account/:account_id" => "accounts#delete_account"
+
   post "create_transaction" => "accounts#create_transaction"
   get "transaction/:id/:transaction_id" => "accounts#transaction"
   patch "edit_transaction" => "accounts#edit_transaction"
-
+  delete "delete_transaction/:transaction_id" => "accounts#delete_transaction"
 
   # Defines the root path route ("/")
   # root "posts#index"

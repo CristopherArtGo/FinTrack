@@ -80,6 +80,24 @@ class EventsController < ApplicationController
         render json: response
     end
 
+    def delete_event
+        puts params
+        event = Event.find(params[:event_id])
+
+        if event.destroy
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: event.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
+
     def event
         user = User.find(params[:id])
         event = user.events.find(params[:event_id])

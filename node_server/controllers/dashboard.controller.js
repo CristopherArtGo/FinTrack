@@ -46,10 +46,9 @@ function dashboard(req, res, next) {
                         account_expenses[i] += parseFloat(response.data.transactions[i][j].amount);
                         total_expenses += parseFloat(response.data.transactions[i][j].amount);
                         category_expenses[parseInt(response.data.transactions[i][j].category) - 1] += parseFloat(response.data.transactions[i][j].amount);
-
                     } else {
                         account_expenses[i] -= response.data.transactions[i][j].amount;
-                        category_expenses[parseInt(response.data.transactions[i][j].category) - 1] -=  parseFloat(response.data.transactions[i][j].amount);
+                        category_expenses[parseInt(response.data.transactions[i][j].category) - 1] -= parseFloat(response.data.transactions[i][j].amount);
                     }
                 }
             }
@@ -59,4 +58,21 @@ function dashboard(req, res, next) {
     });
 }
 
-module.exports = { dashboard };
+function editBudget(req, res, next) {
+    console.log(req.method, req.url, req.body);
+    req.body.id = req.session.user.user_id;
+
+    axios.patch("http://localhost:3000/edit_budget", req.body).then((response) => {
+        console.log(response.data);
+
+        if (response.data.errors) {
+            req.flash("errors", response.data.errors);
+        } else {
+            req.flash("success", response.data.message);
+        }
+        res.redirect("/dashboard");
+    });
+}
+
+
+module.exports = { dashboard, editBudget };

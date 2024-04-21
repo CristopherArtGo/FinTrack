@@ -13,19 +13,24 @@ Router.post("/login_user", UsersController.login_user);
 Router.get("/logout", UsersController.logout);
 
 Router.get("/dashboard", DashboardController.dashboard);
+Router.post("/edit_budget", DashboardController.editBudget);
 
 Router.get("/accounts", AccountsController.accounts);
 Router.get("/account", AccountsController.account);
 Router.post("/create_account", AccountsController.createAccount);
 Router.post("/edit_account", AccountsController.editAccount);
+Router.post("/delete_account", AccountsController.deleteAccount);
+
 Router.post("/create_transaction", AccountsController.createTransaction);
 Router.get("/transaction", AccountsController.transaction);
 Router.post("/edit_transaction", AccountsController.editTransaction);
+Router.post("/delete_transaction", AccountsController.deleteTransaction);
 
 Router.get("/calendar", CalendarController.calendar);
 Router.get("/get_all_events", CalendarController.getAllEvents);
 Router.get("/event", CalendarController.event);
 Router.post("/create_event", CalendarController.createEvent);
 Router.post("/edit_event", CalendarController.editEvent);
+Router.post("/delete_event", CalendarController.deleteEvent);
 
 module.exports = Router;

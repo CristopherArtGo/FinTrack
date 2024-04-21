@@ -148,13 +148,23 @@
                                     <tr>
                                         <th scope="col">Events Today</th>
                                         <th scope="col" class="text-end"></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <%_ for(let i = 0; i < events_today.length; i++) { _%>
                                     <tr>
-                                        <td><%= new Date(events_today[i].event_date).toLocaleDateString('en-US') %> <%= events_today[i].name %></td>
-                                        <td class="text-end"><button class="btn btn-success edit-btn" data-event-id="<%= events_today[i].id %>" data-bs-toggle="modal" data-bs-target="#new_event">Edit</button></td>
+                                        <td class="w-75"><%= new Date(events_today[i].event_date).toLocaleDateString('en-US') %> <%= events_today[i].name %></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-success edit-btn" data-event-id="<%= events_today[i].id %>" data-bs-toggle="modal" data-bs-target="#new_event">Edit</button>
+                                        </td>
+
+                                        <%_ let event_id = events_today[i].id _%>
+                                        <td>
+                                            <form action="/delete_event?event_id=<%= event_id %>" method="post" class="">
+                                                <button class="btn btn-danger delete-event-btn submit">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     <%_ } _%>
                                 </tbody>
@@ -164,13 +174,22 @@
                                     <tr>
                                         <th scope="col">Upcoming Events</th>
                                         <th scope="col" class="text-end"></th>
+                                        <th scope="col" class="text-end"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <%_ for(let i = 0; i < upcoming_events.length; i++) { _%>
                                     <tr>
-                                        <td><%= new Date(upcoming_events[i].event_date).toLocaleDateString('en-US') %> <%= upcoming_events[i].name %></td>
-                                        <td class="text-end"><button class="btn btn-success edit-btn" data-event-id="<%= upcoming_events[i].id %>" data-bs-toggle="modal" data-bs-target="#new_event">Edit</button></td>
+                                        <td class="w-75"><%= new Date(upcoming_events[i].event_date).toLocaleDateString('en-US') %> <%= upcoming_events[i].name %></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-success edit-btn" data-event-id="<%= upcoming_events[i].id %>" data-bs-toggle="modal" data-bs-target="#new_event">Edit</button>
+                                        </td>
+                                        <td>
+                                            <%_ let event_id = upcoming_events[i].id _%>
+                                            <form action="/delete_event?event_id=<%= event_id %>" method="post" class="">
+                                                <button class="btn btn-danger delete-event-btn submit">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     <%_ } _%>
                                 </tbody>

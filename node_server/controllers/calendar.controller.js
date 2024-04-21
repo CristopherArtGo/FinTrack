@@ -67,4 +67,19 @@ function editEvent(req, res, next) {
     });
 }
 
-module.exports = { calendar, getAllEvents, createEvent, editEvent, event };
+function deleteEvent(req, res, next) {
+    console.log(req.method, req.url, req.body);
+
+    axios.delete(`http://localhost:3000/delete_event/${req.query.event_id}`).then((response) => {
+        console.log(response.data);
+
+        if (response.data.errors) {
+            req.flash("errors", response.data.errors);
+        } else {
+            req.flash("success", response.data.message);
+        }
+        res.redirect("/accounts");
+    });
+}
+
+module.exports = { calendar, getAllEvents, createEvent, editEvent, event, deleteEvent };
