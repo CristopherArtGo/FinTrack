@@ -8,15 +8,25 @@ Rails.application.routes.draw do
   post "register" => "users#create"
 
   get "dashboard/:id" => "users#dashboard"
+
   get "accounts/:id/" => "accounts#transactions"
   get "accounts/:id/:account_id" => "accounts#transactions"
   get "accounts/:id/:account_id/:category" => "accounts#transactions"
+
   get "calendar/:id" => "events#calendar"
   get "all_events/:id" => "events#get_all_events"
-
-  post "create_account" => "accounts#create_account"
-  post "create_transaction" => "accounts#create_transaction"
+  get "event/:id/:event_id" => "events#event"
   post "create_event" => "events#create_event"
+  patch "edit_event" => "events#edit_event"
+  
+  post "create_account" => "accounts#create_account"
+  get "account/:id/:account_id" => "accounts#account"
+  patch "edit_account" => "accounts#edit_account"
+  post "create_transaction" => "accounts#create_transaction"
+  get "transaction/:id/:transaction_id" => "accounts#transaction"
+  patch "edit_transaction" => "accounts#edit_transaction"
+
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

@@ -61,5 +61,34 @@ class EventsController < ApplicationController
         render json: response
     end
 
+    def edit_event
+        user = User.find(params[:id])
+        event = user.events.find(params[:event_id]) 
+        event.name = params[:name]
+        event.event_date= params[:event_date]
+        if event.save
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: event.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
+
+    def event
+        user = User.find(params[:id])
+        event = user.events.find(params[:event_id])
+        response = {
+            event: event,
+            status: "received from PORT 3000"
+        }
+        render json: response
+    end
+
 end
 

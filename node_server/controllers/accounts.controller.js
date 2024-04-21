@@ -93,4 +93,56 @@ function createAccount(req, res, next) {
     });
 }
 
-module.exports = { accounts, createAccount, createTransaction };
+function account(req, res, next) {
+    console.log(req.method, req.url);
+
+    axios.get(`http://localhost:3000/account/${req.session.user.user_id}/${req.query.account_id}`).then((response) => {
+        console.log(response.data);
+        res.send(response.data);
+    });
+}
+
+function editAccount(req, res, next) {
+    console.log(req.method, req.url, req.body);
+    req.body.id = req.session.user.user_id;
+    req.body.account_id = req.query.account_id;
+
+    axios.patch("http://localhost:3000/edit_account", req.body).then((response) => {
+        console.log(response.data);
+
+        if (response.data.errors) {
+            req.flash("errors", response.data.errors);
+        } else {
+            req.flash("success", response.data.message);
+        }
+        res.redirect("/accounts");
+    });
+}
+
+function transaction(req, res, next) {
+    console.log(req.method, req.url);
+
+    axios.get(`http://localhost:3000/transaction/${req.session.user.user_id}/${req.query.transaction_id}`).then((response) => {
+        console.log(response.data);
+        res.send(response.data);
+    });
+}
+
+function editTransaction(req, res, next) {
+    console.log(req.method, req.url, req.body);
+    req.body.id = req.session.user.user_id;
+    req.body.transaction_id = req.query.transaction_id;
+
+    axios.patch("http://localhost:3000/edit_transaction", req.body).then((response) => {
+        console.log(response.data);
+
+        if (response.data.errors) {
+            req.flash("errors", response.data.errors);
+        } else {
+            req.flash("success", response.data.message);
+        }
+        res.redirect("/accounts");
+    });
+}
+
+module.exports = { accounts, createAccount, createTransaction, account, editAccount, transaction, editTransaction };

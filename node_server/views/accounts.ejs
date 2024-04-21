@@ -14,6 +14,82 @@
                 if ($("#errors_modal")) {
                     $("#errors_modal").modal("show");
                 }
+
+                $(document).on("click", "button.add-account-btn", () => {
+                    $("#new_account").find("h1").text("Add Account");
+                    $("#new_account").find("button.btn-success").text("Add Account");
+                    $("#new_account").find("form").attr("action", "create_account");
+                    $("#new_account").find("form").find("input[type='text']").val("");
+                    $("#new_account").find("form").find("input[type='number']").val("");
+                });
+
+                $(document).on("click", "button.edit-account-btn", (event) => {
+                    $("#new_account").find("h1").text("Edit Account");
+                    $("#new_account").find("button.btn-success").text("Update Account");
+                    $("#new_account")
+                        .find("form")
+                        .attr("action", `/edit_account?account_id=${$(event.target).attr("data-account-id")}`);
+
+                    $.get(
+                        `/account?account_id=${$(event.target).attr("data-account-id")}`,
+                        (res) => {
+                            let account_name = res.account.name;
+                            let account_amount = res.account.amount;
+                            $("#new_account").find("form").find("input[type='text']").val(account_name);
+                            $("#new_account").find("form").find("input[type='number']").val(account_amount);
+                            return false;
+                        },
+                        "json"
+                    );
+                });
+
+                $(document).on("click", "button.add-transaction-btn", () => {
+                    $("#new_transaction").find("h1").text("Add Transaciton");
+                    $("#new_transaction").find("button.btn-success").text("Add Transaciton");
+                    $("#new_transaction").find("form").attr("action", "create_transaction");
+                    $("#new_transaction").find("form").find("input[type='text']").val("");
+                    $("#new_transaction").find("form").find("input[type='number']").val("");
+                    $("#new_transaction").find("form").find("textarea").val("");
+                });
+
+                $(document).on("click", "button.edit-transaction-btn", (event) => {
+                    $("#new_transaction").find("h1").text("Edit Transaciton");
+                    $("#new_transaction").find("button.btn-success").text("Edit Transaciton");
+                    $("#new_transaction").find("form").attr("action", "edit_transaction");
+
+                    $("#new_transaction")
+                        .find("form")
+                        .attr("action", `/edit_transaction?transaction_id=${$(event.target).attr("data-transaction-id")}`);
+
+                    $.get(
+                        `/transaction?transaction_id=${$(event.target).attr("data-transaction-id")}`,
+                        (res) => {
+                            console.log(res);
+
+                            let transaction_account = res.transaction.account_id;
+                            let transaction_description = res.transaction.description;
+                            let transaction_category = res.transaction.category;
+                            let transaction_amount = res.transaction.amount;
+                            let transaction_notes = res.transaction.notes;
+                            let transaction_is_expense = res.transaction.is_expense;
+
+                            $("#new_transaction").find("form").find("input[type='text']").val(transaction_description);
+                            $("#new_transaction").find("form").find("input[type='text']").val(transaction_description);
+                            $("#new_transaction").find("form").find("input[type='number']").val(transaction_amount);
+                            $("#new_transaction").find("form").find("textarea").val(transaction_notes);
+                            $("#new_transaction").find("form").find("select[name='account']").val(transaction_account).change();
+                            $("#new_transaction").find("form").find("select[name='category']").val(transaction_category).change();
+                            if (transaction_is_expense) {
+                                $("#new_transaction").find("form").find("select[name='is_expense']").val("true").change();
+                            } else {
+                                $("#new_transaction").find("form").find("select[name='is_expense']").val("false").change();
+                            }
+
+                            return false;
+                        },
+                        "json"
+                    );
+                });
             });
         </script>
     </head>
@@ -85,7 +161,7 @@
                                     <h6 class="mb-3">Total Amount: <%= total_account %></h6>
                                 </div>
                                 <div class="col text-end">
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_account">New Account</button>
+                                    <button type="button" class="btn btn-success add-account-btn" data-bs-toggle="modal" data-bs-target="#new_account">New Account</button>
                                 </div>
                             </div>
                             <table class="table table-light table-striped table-hover">
@@ -93,6 +169,7 @@
                                     <tr>
                                         <th scope="col">Account</th>
                                         <th scope="col" class="text-end">Current Amount</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,6 +177,7 @@
                                     <tr>
                                         <td><%= accounts[i].name %></td>
                                         <td class="text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(accounts[i].amount) %></td>
+                                        <td class="text-end"><button class="btn btn-success edit-account-btn" data-account-id="<%= accounts[i].id %>" data-bs-toggle="modal" data-bs-target="#new_account">Edit</button></td>
                                     </tr>
                                     <%_ } _%>
                                 </tbody>
@@ -110,14 +188,14 @@
                             <div class="container"></div>
                         </div>
                     </div>
-                    <div class="row bg-light rounded-4 p-3 border">
+                    <div class="bg-light rounded-4 p-3 border">
                         <div class="row mb-3">
                             <h2 class="fw-bold col-5 me-auto">Transactions</h2>
                             <div class="col-5 text-end">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_transaction">New Transaction</button>
+                                <button type="button" class="btn btn-success add-transaction-btn" data-bs-toggle="modal" data-bs-target="#new_transaction">New Transaction</button>
                             </div>
                         </div>
-                        <form action="/accounts/" method="get" class="mb-3">
+                        <form action="/accounts/" method="get" class="mb-3" id="transactions_filter">
                             <div class="row">
                                 <div class="col-md-4 align-items-center d-flex">
                                     <select class="form-select mb-3" name="account_id">
@@ -158,6 +236,7 @@
                                     <th scope="col">Category</th>
                                     <th scope="col" class="text-end">Amount</th>
                                     <th scope="col" class="w-50 text-center">Notes</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -165,19 +244,10 @@
                                 <tr>
                                     <td><%= (new Date(transactions[i].created_at)).toLocaleDateString('en-US'); %></td>
                                     <td><%= transactions[i].description %></td>
-                                    <td>
-                                        <form action="">
-                                            <select class="form-select form-select-sm w-50">
-                                                <%_ for(let j = 0; j < categories.length; j++) { _%> <%_ if (j + 1 === transactions[i].category) { _%>
-                                                <option value="<%= j + 1 %>" selected><%= categories[j] %></option>
-                                                <%_ } else {_%>
-                                                <option value="<%= j + 1 %>"><%= categories[j] %></option>
-                                                <%_ }_%> <%_ }_%>
-                                            </select>
-                                        </form>
-                                    </td>
+                                    <td><%_ for(let j = 0; j < categories.length; j++) { _%> <%_ if (j + 1 === transactions[i].category) { _%> <%= categories[j] %> <%_ }_%> <%_ }_%></td>
                                     <td class="text-danger text-end"><%= new Intl.NumberFormat('en-PH', {style: 'currency', currency: 'PHP'}).format(transactions[i].amount) %></td>
                                     <td><%= transactions[i].notes %></td>
+                                    <td class="text-end"><button class="btn btn-success edit-transaction-btn" data-transaction-id="<%= transactions[i].id %>" data-bs-toggle="modal" data-bs-target="#new_transaction">Edit</button></td>
                                 </tr>
                                 <%_ }_%>
                             </tbody>
@@ -267,7 +337,7 @@
                 </div>
             </div>
             <%_ if (errors.length) { _%>
-            <div id="errors_modal" class="modal fade" id="new_account" tabindex="1" aria-hidden="false">
+            <div id="errors_modal" class="modal fade" tabindex="1" aria-hidden="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

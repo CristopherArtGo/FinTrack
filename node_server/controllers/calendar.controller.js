@@ -41,4 +41,30 @@ function createEvent(req, res, next) {
     });
 }
 
-module.exports = { calendar, getAllEvents, createEvent };
+function event(req, res, next) {
+    console.log(req.method, req.url);
+
+    axios.get(`http://localhost:3000/event/${req.session.user.user_id}/${req.query.event_id}`).then((response) => {
+        console.log(response.data);
+        res.send(response.data);
+    });
+}
+
+function editEvent(req, res, next) {
+    console.log(req.method, req.url, req.body);
+    req.body.id = req.session.user.user_id;
+    req.body.event_id = req.query.event_id;
+
+    axios.patch("http://localhost:3000/edit_event", req.body).then((response) => {
+        console.log(response.data);
+
+        if (response.data.errors) {
+            req.flash("errors", response.data.errors);
+        } else {
+            req.flash("success", response.data.message);
+        }
+        res.redirect("/calendar");
+    });
+}
+
+module.exports = { calendar, getAllEvents, createEvent, editEvent, event };

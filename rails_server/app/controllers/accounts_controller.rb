@@ -74,5 +74,68 @@ class AccountsController < ApplicationController
         render json: response
     end
 
+    def edit_account
+        user = User.find(params[:id])
+        account = user.accounts.find(params[:account_id])
+        account.name = params[:name]
+        account.amount= params[:amount]
+        if account.save
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: account.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
+
+    def account
+        user = User.find(params[:id])
+        account = user.accounts.find(params[:account_id])
+        response = {
+            account: account,
+            status: "received from PORT 3000"
+        }
+        render json: response
+    end
+
+    def transaction
+        user = User.find(params[:id])
+        transaction = Transaction.find(params[:transaction_id])
+        response = {
+            transaction: transaction,
+            status: "received from PORT 3000"
+        }
+        render json: response
+    end
+
+    def edit_transaction
+        user = User.find(params[:id])
+        transaction = Transaction.find(params[:transaction_id])
+
+        transaction.account = Account.find(params[:account_id])
+        transaction.description = params[:description]
+        transaction.category = params[:category]
+        transaction.amount = params[:amount]
+        transaction.notes = params[:notes]
+        transaction.is_expense = params[:is_expense]
+
+        if transaction.save
+            response = {
+                message: "success",
+                status: "received from PORT 3000"
+            }
+        else
+            response = {
+                errors: transaction.errors.full_messages,
+                status: "received from PORT 3000"
+            }
+        end   
+        render json: response
+    end
 
 end

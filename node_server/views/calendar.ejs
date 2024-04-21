@@ -43,6 +43,34 @@
                 if ($("#errors_modal")) {
                     $("#errors_modal").modal("show");
                 }
+
+                $(document).on("click", "button.add-btn", () => {
+                    $("#new_event h1").text("Add Event");
+                    $("#new_event").find("button.btn-success").text("Add Event");
+                    $("#new_event").find("form").attr("action", "create_event");
+                    $("#new_event").find("form").find("input[type='text']").val("");
+                    $("#new_event").find("form").find("input[type='date']").val("");
+                });
+
+                $(document).on("click", "button.edit-btn", (event) => {
+                    $("#new_event h1").text("Edit Event");
+                    $("#new_event").find("button.btn-success").text("Update Event");
+                    $("#new_event")
+                        .find("form")
+                        .attr("action", `/edit_event?event_id=${$(event.target).attr("data-event-id")}`);
+
+                    $.get(
+                        `/event?event_id=${$(event.target).attr("data-event-id")}`,
+                        (res) => {
+                            let event_name = res.event.name;
+                            let event_date = new Date(res.event.event_date).toISOString().split("T")[0];
+                            $("#new_event").find("form").find("input[type='text']").val(event_name);
+                            $("#new_event").find("form").find("input[type='date']").val(event_date);
+                            return false;
+                        },
+                        "json"
+                    );
+                });
             });
         </script>
     </head>
@@ -111,7 +139,7 @@
                             <div class="row">
                                 <h2 class="fw-bold col">Events</h2>
                                 <div class="col text-end">
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_event">New Event</button>
+                                    <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#new_event">New Event</button>
                                 </div>
                             </div>
 
@@ -119,12 +147,14 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Events Today</th>
+                                        <th scope="col" class="text-end"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <%_ for(let i = 0; i < events_today.length; i++) { _%>
                                     <tr>
                                         <td><%= new Date(events_today[i].event_date).toLocaleDateString('en-US') %> <%= events_today[i].name %></td>
+                                        <td class="text-end"><button class="btn btn-success edit-btn" data-event-id="<%= events_today[i].id %>" data-bs-toggle="modal" data-bs-target="#new_event">Edit</button></td>
                                     </tr>
                                     <%_ } _%>
                                 </tbody>
@@ -133,12 +163,14 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Upcoming Events</th>
+                                        <th scope="col" class="text-end"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <%_ for(let i = 0; i < upcoming_events.length; i++) { _%>
                                     <tr>
                                         <td><%= new Date(upcoming_events[i].event_date).toLocaleDateString('en-US') %> <%= upcoming_events[i].name %></td>
+                                        <td class="text-end"><button class="btn btn-success edit-btn" data-event-id="<%= upcoming_events[i].id %>" data-bs-toggle="modal" data-bs-target="#new_event">Edit</button></td>
                                     </tr>
                                     <%_ } _%>
                                 </tbody>
@@ -177,7 +209,7 @@
                 </div>
             </div>
             <%_ if (errors.length) { _%>
-            <div id="errors_modal" class="modal fade" id="new_account" tabindex="1" aria-hidden="false">
+            <div id="errors_modal" class="modal fade" tabindex="1" aria-hidden="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
