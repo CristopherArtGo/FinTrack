@@ -201,7 +201,7 @@
                                     <div class="form-group">
                                         <label for="category"><%= categories[i - 1] %></label>
                                         <%_ let name = `category_${i}` _%>
-                                        <input type="number" step="0.01" class="form-control" placeholder="0.00" id="amount" name="<%= name %>" value="<%= budget[`category_${i + 1}`] %>" />
+                                        <input type="number" step="0.01" class="form-control" placeholder="0.00" id="amount" name="<%= name %>" value="<%= budget[`category_${i}`] %>" />
                                     </div>
                                     <%_ }_%>
                                 </div>

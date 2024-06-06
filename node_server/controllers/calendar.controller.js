@@ -78,7 +78,7 @@ function deleteEvent(req, res, next) {
         } else {
             req.flash("success", response.data.message);
         }
-        res.redirect("/accounts");
+        res.redirect("calendar");
     });
 }
 

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get "event/:id/:event_id" => "events#event"
   post "create_event" => "events#create_event"
   patch "edit_event" => "events#edit_event"
-  delete "delete_event/:event_id" => "accounts#delete_event"
+  delete "delete_event/:event_id" => "events#delete_event"
 
   post "create_account" => "accounts#create_account"
   get "account/:id/:account_id" => "accounts#account"
